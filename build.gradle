@@ -21,6 +21,8 @@ repositories {
 dependencies {
     // Web / REST API
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    implementation 'org.springframework.boot:spring-boot-starter-json'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
 
     // Security / JWT auth / roles
     implementation 'org.springframework.boot:spring-boot-starter-security'
