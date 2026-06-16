@@ -1,8 +1,8 @@
 package mamarr.loanapplicationapp.bll;
 
-import mamarr.loanapplicationapp.bll.contracts.CurrentUserService;
-import mamarr.loanapplicationapp.bll.contracts.LoanApplicationService;
-import mamarr.loanapplicationapp.dal.contracts.LoanApplicationRepository;
+import mamarr.loanapplicationapp.bll.contracts.ICurrentUserService;
+import mamarr.loanapplicationapp.bll.contracts.ILoanApplicationService;
+import mamarr.loanapplicationapp.dal.contracts.ILoanApplicationRepository;
 import mamarr.loanapplicationapp.domain.AppUser;
 import mamarr.loanapplicationapp.domain.ApplicationStatus;
 import mamarr.loanapplicationapp.domain.LoanApplication;
@@ -17,12 +17,12 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class DefaultLoanApplicationService implements LoanApplicationService {
-    private final LoanApplicationRepository repository;
-    private final CurrentUserService currentUserService;
+public class LoanApplicationService implements ILoanApplicationService {
+    private final ILoanApplicationRepository repository;
+    private final ICurrentUserService currentUserService;
     private final LoanCalculator calculator;
 
-    public DefaultLoanApplicationService(LoanApplicationRepository repository, CurrentUserService currentUserService) {
+    public LoanApplicationService(ILoanApplicationRepository repository, ICurrentUserService currentUserService) {
         this.repository = repository;
         this.currentUserService = currentUserService;
         this.calculator = new LoanCalculator();

@@ -3,7 +3,7 @@ package mamarr.loanapplicationapp.app;
 import jakarta.validation.Valid;
 import mamarr.loanapplicationapp.app.dto.LoanApplicationResponse;
 import mamarr.loanapplicationapp.app.dto.UpdateApplicationStatusRequest;
-import mamarr.loanapplicationapp.bll.contracts.LoanApplicationService;
+import mamarr.loanapplicationapp.bll.contracts.ILoanApplicationService;
 import mamarr.loanapplicationapp.domain.ApplicationStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -20,9 +20,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/admin/applications")
 public class AdminLoanApplicationController {
-    private final LoanApplicationService service;
+    private final ILoanApplicationService service;
 
-    public AdminLoanApplicationController(LoanApplicationService service) {
+    public AdminLoanApplicationController(ILoanApplicationService service) {
         this.service = service;
     }
 

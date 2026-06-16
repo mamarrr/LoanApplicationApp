@@ -4,7 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import mamarr.loanapplicationapp.bll.contracts.TokenService;
+import mamarr.loanapplicationapp.bll.contracts.ITokenService;
 import mamarr.loanapplicationapp.domain.AppUser;
 import mamarr.loanapplicationapp.domain.UserRole;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Service
-public class JwtService implements TokenService {
+public class JwtService implements ITokenService {
     private final SecretKey secretKey;
     private final long ttlSeconds;
 

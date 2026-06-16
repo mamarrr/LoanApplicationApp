@@ -2,6 +2,6 @@ package mamarr.loanapplicationapp.bll.contracts;
 
 import java.util.UUID;
 
-public interface CurrentUserIdentityProvider {
+public interface ICurrentUserIdentityProvider {
     UUID currentUserId();
 }

@@ -1,6 +1,6 @@
 package mamarr.loanapplicationapp.dal;
 
-import mamarr.loanapplicationapp.dal.contracts.UserRepository;
+import mamarr.loanapplicationapp.dal.contracts.IUserRepository;
 import mamarr.loanapplicationapp.domain.AppUser;
 import org.springframework.stereotype.Repository;
 
@@ -8,10 +8,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class JpaUserRepositoryAdapter implements UserRepository {
+public class UserRepository implements IUserRepository {
     private final UserSpringDataRepository repository;
 
-    public JpaUserRepositoryAdapter(UserSpringDataRepository repository) {
+    public UserRepository(UserSpringDataRepository repository) {
         this.repository = repository;
     }
 

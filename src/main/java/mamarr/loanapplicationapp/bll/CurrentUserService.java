@@ -1,18 +1,18 @@
 package mamarr.loanapplicationapp.bll;
 
-import mamarr.loanapplicationapp.bll.contracts.CurrentUserIdentityProvider;
-import mamarr.loanapplicationapp.bll.contracts.CurrentUserService;
-import mamarr.loanapplicationapp.dal.contracts.UserRepository;
+import mamarr.loanapplicationapp.bll.contracts.ICurrentUserIdentityProvider;
+import mamarr.loanapplicationapp.bll.contracts.ICurrentUserService;
+import mamarr.loanapplicationapp.dal.contracts.IUserRepository;
 import mamarr.loanapplicationapp.domain.AppUser;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class DefaultCurrentUserService implements CurrentUserService {
-    private final CurrentUserIdentityProvider identityProvider;
-    private final UserRepository userRepository;
+public class CurrentUserService implements ICurrentUserService {
+    private final ICurrentUserIdentityProvider identityProvider;
+    private final IUserRepository userRepository;
 
-    public DefaultCurrentUserService(CurrentUserIdentityProvider identityProvider, UserRepository userRepository) {
+    public CurrentUserService(ICurrentUserIdentityProvider identityProvider, IUserRepository userRepository) {
         this.identityProvider = identityProvider;
         this.userRepository = userRepository;
     }

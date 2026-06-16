@@ -6,7 +6,7 @@ import mamarr.loanapplicationapp.app.dto.LoginRequest;
 import mamarr.loanapplicationapp.app.dto.RegisterRequest;
 import mamarr.loanapplicationapp.bll.LoginCommand;
 import mamarr.loanapplicationapp.bll.RegisterCommand;
-import mamarr.loanapplicationapp.bll.contracts.AuthService;
+import mamarr.loanapplicationapp.bll.contracts.IAuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-    private final AuthService authService;
+    private final IAuthService authService;
 
-    public AuthController(AuthService authService) {
+    public AuthController(IAuthService authService) {
         this.authService = authService;
     }
 

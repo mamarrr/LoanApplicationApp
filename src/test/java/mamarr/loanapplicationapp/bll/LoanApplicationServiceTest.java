@@ -1,7 +1,7 @@
 package mamarr.loanapplicationapp.bll;
 
-import mamarr.loanapplicationapp.bll.contracts.CurrentUserService;
-import mamarr.loanapplicationapp.dal.contracts.LoanApplicationRepository;
+import mamarr.loanapplicationapp.bll.contracts.ICurrentUserService;
+import mamarr.loanapplicationapp.dal.contracts.ILoanApplicationRepository;
 import mamarr.loanapplicationapp.domain.AppUser;
 import mamarr.loanapplicationapp.domain.ApplicationStatus;
 import mamarr.loanapplicationapp.domain.LoanApplication;
@@ -18,7 +18,7 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class DefaultLoanApplicationServiceTest {
+class LoanApplicationServiceTest {
     private final UUID currentUserId = UUID.randomUUID();
     private final AppUser currentUser = new AppUser(
             currentUserId,
@@ -31,7 +31,7 @@ class DefaultLoanApplicationServiceTest {
             Instant.now()
     );
     private final FakeLoanApplicationRepository repository = new FakeLoanApplicationRepository();
-    private final DefaultLoanApplicationService service = new DefaultLoanApplicationService(repository, () -> currentUser);
+    private final LoanApplicationService service = new LoanApplicationService(repository, () -> currentUser);
 
     @Test
     void createForCurrentUserCalculatesAndStartsPending() {
@@ -75,7 +75,7 @@ class DefaultLoanApplicationServiceTest {
                 Instant.now(),
                 Instant.now()
         );
-        DefaultLoanApplicationService adminService = new DefaultLoanApplicationService(repository, () -> admin);
+        LoanApplicationService adminService = new LoanApplicationService(repository, () -> admin);
 
         LoanApplication updated = adminService.updateStatus(application.id(), ApplicationStatus.APPROVED);
 
@@ -93,7 +93,7 @@ class DefaultLoanApplicationServiceTest {
                 .hasMessageContaining("Admin");
     }
 
-    private static class FakeLoanApplicationRepository implements LoanApplicationRepository {
+    private static class FakeLoanApplicationRepository implements ILoanApplicationRepository {
         private final List<LoanApplication> saved = new ArrayList<>();
 
         @Override

@@ -1,7 +1,7 @@
 package mamarr.loanapplicationapp.bll;
 
-import mamarr.loanapplicationapp.bll.contracts.TokenService;
-import mamarr.loanapplicationapp.dal.contracts.UserRepository;
+import mamarr.loanapplicationapp.bll.contracts.ITokenService;
+import mamarr.loanapplicationapp.dal.contracts.IUserRepository;
 import mamarr.loanapplicationapp.domain.AppUser;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,11 +15,11 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class DefaultAuthServiceTest {
+class AuthServiceTest {
     private final FakeUserRepository userRepository = new FakeUserRepository();
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    private final TokenService tokenService = new FakeTokenService();
-    private final DefaultAuthService authService = new DefaultAuthService(userRepository, passwordEncoder, tokenService);
+    private final ITokenService tokenService = new FakeTokenService();
+    private final AuthService authService = new AuthService(userRepository, passwordEncoder, tokenService);
 
     @Test
     void registerHashesPasswordAndSavesUserRole() {
@@ -54,7 +54,7 @@ class DefaultAuthServiceTest {
                 .isInstanceOf(InvalidCredentialsException.class);
     }
 
-    private static class FakeUserRepository implements UserRepository {
+    private static class FakeUserRepository implements IUserRepository {
         private final Map<UUID, AppUser> usersById = new HashMap<>();
         private final Map<String, AppUser> usersByEmail = new HashMap<>();
 
@@ -81,7 +81,7 @@ class DefaultAuthServiceTest {
         }
     }
 
-    private static class FakeTokenService implements TokenService {
+    private static class FakeTokenService implements ITokenService {
         @Override
         public String createAccessToken(AppUser user) {
             return "token-" + user.id();

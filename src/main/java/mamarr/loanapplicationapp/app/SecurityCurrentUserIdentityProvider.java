@@ -1,7 +1,7 @@
 package mamarr.loanapplicationapp.app;
 
 import mamarr.loanapplicationapp.app.security.AuthenticatedUser;
-import mamarr.loanapplicationapp.bll.contracts.CurrentUserIdentityProvider;
+import mamarr.loanapplicationapp.bll.contracts.ICurrentUserIdentityProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public class SecurityCurrentUserIdentityProvider implements CurrentUserIdentityProvider {
+public class SecurityCurrentUserIdentityProvider implements ICurrentUserIdentityProvider {
     @Override
     public UUID currentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

@@ -1,20 +1,20 @@
 package mamarr.loanapplicationapp.bll;
 
-import mamarr.loanapplicationapp.bll.contracts.AuthService;
-import mamarr.loanapplicationapp.bll.contracts.TokenService;
-import mamarr.loanapplicationapp.dal.contracts.UserRepository;
+import mamarr.loanapplicationapp.bll.contracts.IAuthService;
+import mamarr.loanapplicationapp.bll.contracts.ITokenService;
+import mamarr.loanapplicationapp.dal.contracts.IUserRepository;
 import mamarr.loanapplicationapp.domain.AppUser;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class DefaultAuthService implements AuthService {
-    private final UserRepository userRepository;
+public class AuthService implements IAuthService {
+    private final IUserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final TokenService tokenService;
+    private final ITokenService tokenService;
 
-    public DefaultAuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, TokenService tokenService) {
+    public AuthService(IUserRepository userRepository, PasswordEncoder passwordEncoder, ITokenService tokenService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.tokenService = tokenService;

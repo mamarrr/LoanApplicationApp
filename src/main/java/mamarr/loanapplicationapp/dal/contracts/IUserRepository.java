@@ -5,7 +5,7 @@ import mamarr.loanapplicationapp.domain.AppUser;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface UserRepository {
+public interface IUserRepository {
     AppUser save(AppUser user);
 
     Optional<AppUser> findById(UUID id);
